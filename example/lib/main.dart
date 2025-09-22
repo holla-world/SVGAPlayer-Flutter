@@ -84,6 +84,7 @@ class SVGASampleScreen extends StatefulWidget {
   final String? name;
   final String image;
   final void Function(MovieEntity entity)? dynamicCallback;
+
   const SVGASampleScreen(
       {Key? key, required this.image, this.name, this.dynamicCallback})
       : super(key: key);
@@ -98,12 +99,14 @@ class _SVGASampleScreenState extends State<SVGASampleScreen>
   bool isLoading = true;
   Color backgroundColor = Colors.transparent;
   bool allowOverflow = true;
+
   // Canvaskit need FilterQuality.high
   FilterQuality filterQuality = kIsWeb ? FilterQuality.high : FilterQuality.low;
   BoxFit fit = BoxFit.contain;
   late double containerWidth;
   late double containerHeight;
   bool hideOptions = false;
+
   @override
   void initState() {
     super.initState();
@@ -154,8 +157,9 @@ class _SVGASampleScreenState extends State<SVGASampleScreen>
         children: <Widget>[
           Container(
               padding: const EdgeInsets.all(8.0),
-              child: Text("Url: ${widget.image}",
-                  style: Theme.of(context).textTheme.subtitle2)),
+              child: Text(
+                "Url: ${widget.image}",
+              )),
           if (isLoading) LinearProgressIndicator(),
           Center(
             child: ColoredBox(
